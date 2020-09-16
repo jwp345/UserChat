@@ -23,7 +23,8 @@ public class ChatListServlet extends HttpServlet {
 		if(fromID == null || fromID.equals("") || toID == null || toID.equals("")
 				|| listType == null || listType.equals("")) {
 			response.getWriter().write("");
-		} else if(listType.equals("ten")) response.getWriter().write(getTen(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8")));
+		} 
+		//else if(listType.equals("ten")) response.getWriter().write(getTen(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8")));
 		else{
 			try {
 				response.getWriter().write(getID(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8"), listType));

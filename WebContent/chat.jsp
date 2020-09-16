@@ -62,8 +62,6 @@
 				});
 				$('#chatContent').val('');	
 			}
-			
-			
 			var lastID = 0;
 			function chatListFunction(type) {
 				var fromID = '<%=userID%>';
@@ -115,12 +113,34 @@
 						'<hr>');
 				$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 			}
-			
-		
 			function getInfiniteChat() {
 				setInterval(function() {
 					chatListFunction(lastID);
 				}, 3000);
+			}
+			function getUnread() {
+				$.ajax({
+					type: "POST",
+					url: "./chatUnread",
+					data: {
+						userID: encodeURIComponent('<%= userID %>'),
+					},
+					success: function(result) {
+						if(result >= 1) {
+							showUnread(result);
+						} else {
+							showUnread('');
+						}
+					}
+				});
+			}
+			function getInfiniteUnread() {
+				setInterval(function() {
+					getUnread();
+				}, 4000);
+			}
+			function showUnread(result) {
+				$('#unread').html(result);
 			}
 	</script>
 </head>
@@ -140,6 +160,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp">메인</a>
 				<li><a href="find.jsp">친구찾기</a></li>
+				<li><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>			
 			</ul>
 			<%
 				if (userID != null) {
@@ -248,8 +269,10 @@
 	%>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		chatListFunction('ten'); 
+		getUnread();
+		chatListFunction('0'); 
 		getInfiniteChat();
+		getInfiniteUnread();
 	});
 	</script>
 </body>
