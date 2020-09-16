@@ -65,16 +65,17 @@
 						} else {
 							result[i][1].value = result[i][0].value;
 						}
-						addBox(result[i][0].value, result[i][1].value, result[i][2].value, result[i][3].value)
+						addBox(result[i][0].value, result[i][1].value, result[i][2].value, result[i][3].value, result[i][4].value)
 					}
 				}
 			});
 		}
-		function addBox(lastID, toID, chatContent, chatTime) {
+		function addBox(lastID, toID, chatContent, chatTime, unread) {
 			$('#boxTable').append('<tr onclick="location.href=\'chat.jsp?toID=' + encodeURIComponent(toID) + '\'">' +
 				'<td style="width: 150px;"><h5>' + lastID + '</h5></td>' +
 				'<td>' +
-				'<h5>' + chatContent + '</h5>' +
+				'<h5>' + chatContent + 
+				'<span class="label label-info">' + unread + '</span></h5>' +
 				'<div class="pull-right">' + chatTime + '</div>' +
 				'</td>' +
 				'<tr>');
@@ -145,7 +146,7 @@
 					<th><h4>주고받은 메시지 목록</h4></th>
 				</tr>
 			</thead>
-			<div style="overflow-y: auto; width: 100%; max-height: 450px;">
+			<div style="overflow-y: auto; width: 100%; max-height: 450px">
 				<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd; margin: 0 auto;">
 					<tbody id="boxTable">
 					</tbody>
