@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>JSP Ajax 실시간 회원제 채팅 서비스</title>
 </head>
 <body>
